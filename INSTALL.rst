@@ -1,4 +1,4 @@
-Install
+/tomcInstall
 =======
 
 This is a guide about how to install *LibrePlan* project in your system. If you
@@ -164,7 +164,7 @@ Debian/Ubuntu
 
 * Install requirements::
 
-    # apt-get install openjdk-8-jre postgresql postgresql-client tomcat8 libpg-java cutycapt xvfb
+    # apt-get install openjdk-9-jre postgresql postgresql-client tomcat9 libpg-java cutycapt xvfb
 
 * Connect to database::
 
@@ -174,7 +174,7 @@ Debian/Ubuntu
 
     CREATE DATABASE libreplan;
     CREATE USER libreplan WITH PASSWORD 'libreplan';
-    GRANT ALL PRIVILEGES ON DATABASE libreplan TO libreplan;
+    CREATE DATABASE libreplan owner libreplan;
 
 * Download database installation script::
 
@@ -201,9 +201,9 @@ Debian/Ubuntu
 
     $ wget -O libreplan.war http://downloads.sourceforge.net/project/libreplan/LibrePlan/libreplan_1.4.1.war
 
-* Create a new file ``/etc/tomcat8/Catalina/localhost/libreplan.xml`` (file
+* Create a new file ``/etc/tomcat9/Catalina/localhost/libreplan.xml`` (file
   name has to match with ``.war`` name) with database configuration for
-  Tomcat 8::
+  Tomcat 9::
 
     <?xml version="1.0" encoding="UTF-8"?>
 
@@ -216,7 +216,7 @@ Debian/Ubuntu
             url="jdbc:postgresql://localhost/libreplan" />
     </Context>
 
-* Add next lines to Tomcat 8 policy file ``/etc/tomcat8/catalina.policy`` or ``/var/lib/tomcat8/conf``  or ``/etc/tomcat8/policy.d/03catalina.policy``
+* Add next lines to Tomcat 9 policy file ``/etc/tomcat8/catalina.policy`` or ``/var/lib/tomcat8/conf``  or ``/etc/tomcat8/policy.d/03catalina.policy``
   with the following content::
 
     grant codeBase "file:/var/lib/tomcat8/webapps/libreplan/-" {
@@ -227,7 +227,7 @@ Debian/Ubuntu
     };
 
 
-* Also add next lines to Tomcat 8 policy file::
+* Also add next lines to Tomcat 9 policy file::
 
     grant codeBase "file:${catalina.home}/bin/tomcat-juli.jar" {
       ...
@@ -241,11 +241,11 @@ Debian/Ubuntu
 
     # ln -s /usr/share/java/postgresql-jdbc4.jar /usr/share/tomcat8/lib/
 
-* Copy war to Tomcat 8 web applications directory::
+* Copy war to Tomcat 9 web applications directory::
 
     # cp libreplan.war /var/lib/tomcat8/webapps/
 
-* Restart Tomcat 8::
+* Restart Tomcat 9::
 
     # /etc/init.d/tomcat8 restart
 
@@ -319,7 +319,7 @@ openSUSE
 
 * Create a new file ``/etc/tomcat8/Catalina/localhost/libreplan.xml`` (file
   name has to match with ``.war`` name) with database configuration for
-  Tomcat 8::
+  Tomcat 9::
 
     <?xml version="1.0" encoding="UTF-8"?>
 
@@ -336,11 +336,11 @@ openSUSE
 
     # ln -s /usr/share/java/postgresql-jdbc4.jar /usr/share/tomcat8/lib/
 
-* Copy war to Tomcat 8 web applications directory::
+* Copy war to Tomcat 9 web applications directory::
 
     # cp libreplan.war /srv/tomcat8/webapps/
 
-* Restart Tomcat 8:
+* Restart Tomcat 9:
 
     # /etc/init.d/tomcat8 restart
 
@@ -359,7 +359,7 @@ Instructions:
 
     # http://www.enterprisedb.com/products-services-training/pgdownload#windows
 
-* Download and install Apache Tomcat 8::
+* Download and install Apache Tomcat 9::
 
     # https://tomcat.apache.org/download-80.cgi
 
@@ -400,9 +400,9 @@ Instructions:
 
 * Configure Apache Tomcat Server
 
-* Put libreplan.war file to Apache Tomcat webapps folder (e.g. C:/Program Files/Apache Software Foundation/Tomcat 8.0/webapps/)
+* Put libreplan.war file to Apache Tomcat webapps folder (e.g. C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/)
 
-* Go to localhost folder (e.g. C:/Program Files/Apache Software Foundation/Tomcat 8.0/conf/Catalina/localhost/)
+* Go to localhost folder (e.g. C:/Program Files/Apache Software Foundation/Tomcat 9.0/conf/Catalina/localhost/)
   and create there libreplan.xml file with this lines of code::
 
     <?xml version="1.0" encoding="UTF-8"?>
@@ -418,7 +418,7 @@ Instructions:
 
 * Start Apache Tomcat server
 
-    # Example location: C:/Program Files/Apache Software Foundation/Tomcat 8.0/bin/Tomcat8.exe
+    # Example location: C:/Program Files/Apache Software Foundation/Tomcat 9.0/bin/Tomcat8.exe
 
 If you will face SKIP_IDENTIFIER_CHECK error, refer to:
   http://stackoverflow.com/questions/24546304/how-to-skip-java-reserve-keyword-identifier-check-in-tomcat
